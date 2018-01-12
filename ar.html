@@ -5,7 +5,43 @@
     <title>Augmented Reality Education Project</title>
 </head>
 <body bgcolor="darkgreen" text="black">
-<a href="https://github.com/matthewcanova/arkit-example">ARKit Example Code</a>
+<p align="center">Augmented Reality Education Project</p>
+
+This was a part-time project over the Summer of 2017 focusing on Augmented Reality in education settings. <br><br>
+
+Coinciding with the start of this project, Apple released the first beta for their new ARKit. It seemed appropriate to
+explore the new technology as part of this project, which we did. I did not have prior experience in 3D Graphics or
+App Development and so this became an amazing opportunity for me to dive in and learn about these topics. While my
+exploration into ARKit allowed me to explore a lot about 3D Graphics and iOS App Development, we decided in the end
+to move on to more stable systems as a few limitations of the ARKit system did not meet our immediate needs. Notably,
+it did not allow for use of the front and back cameras simultaneously, and focused primarily on plane detection, whereas
+we wanted to use fixed-location anchors on the ceiling (detected by the front camera) to coordinate an AR experience
+on a table/surface through the front camera. <br><br>
+
+We moved on to ARToolkit5 at this point, which we were able to confirm allowed simultaneous camera usage and was built
+primarily for anchor identification. It should be noted that some looking into ARToolkit6 was also done, but it is still
+too "in development" to pursue. It should also be noted that the ARKit examples had been in Swift (a new language for me)
+and the ARToolkit code was in Objective-C (also a new language for me).<br><br>
+
+While a lot of work went into researching and learning the core of the current augmented reality technology, I was able
+to experiment with the software to determine how to accomplish our primary task. While many (more complicated) solutions
+were attempted, the final result is quite straightforward:<br><br>
+
+1. The front camera must be piped into the anchor detection portion of the AR experience.<br>
+2. This is tied into a 3DScene, whose camera view has to be rotated 180 degrees around the x-axis. This requires <br>
+an affine transformation, but most systems will have a built in function for the various rotations, translations, etc.<br>
+3. The primary display should be piped into the front camera.<br>
+4. The anchor needs to be translated along the z-axis until it is no longer on the ceiling, but on the desired surface<br>
+in front of the camera. This should place the anchor back in view of the 3DScene camera view, and should keep the total<br>
+distance from surface-to-device-to-ceiling constant based on the translation amount. Use of the anchor will also have <br>
+to be rotated 180 degrees.<br><br>
+
+One of the goals that we were not able to get to was to coordinate the display between two different devices to view
+the same AR experience. I believe that the current solution would suffice for x and z axis coordination, but that
+additional work would have to be done to ensure the y-axis experience was the same. I have linked to the example code
+for both systems that were used in the exploration and experimentation for this project. <br><br>
+
+<a href="https://github.com/matthewcanova/arkit-example">ARKit Example Code</a><br>
 <a href="https://github.com/matthewcanova/artoolkit5-example">ARToolkit5 Example Code</a>
 </body>
 </html>
